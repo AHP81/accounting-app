@@ -1,4 +1,3 @@
+@import '@/styles/base.css';
+@import '@/styles/tokens/index.css';
 @import 'tailwindcss';
-@import './token.css';
-@import './components.css';
-@import './base.css';
