@@ -1,6 +1,10 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./routes";
+import {RouterProvider} from "react-router-dom";
+import {Suspense} from "react";
+import {router} from "./routes";
+import Loading from "@/components/Loading.tsx";
 
 export default function App() {
-    return <RouterProvider router={router} />;
+    return <Suspense fallback={<Loading />}>
+        <RouterProvider router={router}/>
+    </Suspense>;
 }

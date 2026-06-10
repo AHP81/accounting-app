@@ -1,19 +1,21 @@
 import {
     createBrowserRouter,
 } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
-import Dashboard from "../pages/Dashboard";
-import Trading from "../pages/Trading";
-import Revenue from "../pages/Revenue";
-import CreditCard from "../pages/CreditCard";
-import Group from "../pages/Group";
-import Calender from "../pages/Calender";
-import Setting from "../pages/Setting";
-import Eye from "../pages/Eye";
+import {ROUTES} from "@/config/routes.ts";
+import {lazy} from "react";
+const MainLayout = lazy(() => import("@/layouts/MainLayout"));
+const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const Trading = lazy(() => import("@/pages/Trading"));
+const Revenue = lazy(() => import("@/pages/Revenue"));
+const CreditCard = lazy(() => import("@/pages/CreditCard"));
+const Group = lazy(() => import("@/pages/Group"));
+const Calendar = lazy(() => import("@/pages/Calendar"));
+const Setting = lazy(() => import("@/pages/Setting"));
+const Eye = lazy(() => import("@/pages/Eye"));
 
 export const router = createBrowserRouter([
     {
-        path: "/",
+        path: ROUTES.dashboard,
         element: <MainLayout />,
         children: [
             {
@@ -21,31 +23,31 @@ export const router = createBrowserRouter([
                 element: <Dashboard />,
             },
             {
-                path: "trading",
+                path: ROUTES.trading,
                 element: <Trading />,
             },
             {
-                path: "revenue",
+                path: ROUTES.revenue,
                 element: <Revenue />,
             },
             {
-                path: "creditCard",
+                path: ROUTES.creditCard,
                 element: <CreditCard />,
             },
             {
-                path: "group",
+                path: ROUTES.customers,
                 element: <Group />,
             },
             {
-                path: "calender",
-                element: <Calender />,
+                path: ROUTES.calendar,
+                element: <Calendar />,
             },
             {
-                path: "setting",
+                path: ROUTES.settings,
                 element: <Setting />,
             },
             {
-                path: "eye",
+                path: ROUTES.visibility,
                 element: <Eye />,
             },
         ],
