@@ -1,4 +1,4 @@
-import Plus from '@/icons/Plus.svg?react'
+import Plus from '@/icons/Plus.svg?react';
 
 export default function Dashboard() {
     return <div dir={'rtl'}>

@@ -1,13 +1,12 @@
 import {ROUTES} from "@/config/routes.ts";
-import House from '@/icons/House.svg?react'
-import Trading from '@/icons/Trading.svg?react'
-import Revenue from '@/icons/Revenue.svg?react'
-import CreditCard from '@/icons/CreditCard.svg?react'
-import Group from '@/icons/Group.svg?react'
-import Calendar from '@/icons/Calendar.svg?react'
-import Setting from '@/icons/Setting.svg?react'
-import Eye from '@/icons/Eye.svg?react'
-
+import House from '@/icons/House.svg?react';
+import Trading from '@/icons/Trading.svg?react';
+import Revenue from '@/icons/Revenue.svg?react';
+import CreditCard from '@/icons/CreditCard.svg?react';
+import Group from '@/icons/Group.svg?react';
+import Calendar from '@/icons/Calendar.svg?react';
+import Setting from '@/icons/Setting.svg?react';
+import Eye from '@/icons/Eye.svg?react';
 
 import type { ComponentType, SVGProps } from 'react';
 
