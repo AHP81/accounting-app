@@ -1,15 +1,18 @@
 import { NavLink } from "react-router-dom";
+import * as React from "react";
+
 
 export default function SidebarItem({
                                         to,
                                         Icon,
                                     }: {
     to: string;
-    Icon: React.ElementType;
+    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }) {
     return (
         <NavLink
             to={to}
+            end={to === '/'}
             className={({ isActive }) =>
                 `
           w-12 h-12
@@ -23,7 +26,7 @@ export default function SidebarItem({
         `
             }
         >
-            <Icon className="w-6 h-6" />
+            <Icon className={'w-6 h-6'} />
         </NavLink>
     );
 }
