@@ -1,21 +1,6 @@
-import { Button } from '@/ui/button/Button'
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
 
-function App() {
-
-  return (
-    <>
-      <div className=''>
-        {/* <button className='btn btn-primary mt-4 ml-4' onClick={() => setCount((count) => count + 1)}>
-          hello world {count}
-        </button> */}
-        <div>
-          <Button variant='success' fullWidth>
-          ثبت
-        </Button>
-        </div>
-      </div>
-    </>
-  )
+export default function App() {
+    return <RouterProvider router={router} />;
 }
-
-export default App
