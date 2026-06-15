@@ -1,3 +1,33 @@
 @import '@/styles/base.css';
 @import '@/styles/tokens/index.css';
 @import 'tailwindcss';
+
+@font-face {
+    font-family: "IRANSansFaNum";
+
+    src: url("/fonts/IRANSansWeb(FaNum).ttf")
+    format("ttf");
+
+    font-weight: 400;
+}
+
+body {
+    font-family: "IRANSansFaNum", sans-serif;
+}
+
+@theme {
+    /*--animate-fadeUp: fadeUp 0.18s ease-out;*/
+    --font-sans: "IRANSansFaNum";
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
