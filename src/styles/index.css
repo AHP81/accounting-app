@@ -3,21 +3,21 @@
 @import 'tailwindcss';
 
 @font-face {
-    font-family: "IRANSansFaNum";
+    font-family: "IRANSans";
 
-    src: url("/fonts/IRANSansWeb(FaNum).ttf")
-    format("ttf");
+    src: url("/fonts/IRANSansWeb.ttf")
+    format("truetype");
 
     font-weight: 400;
 }
 
 body {
-    font-family: "IRANSansFaNum", sans-serif;
+    font-family: "IRANSans", sans-serif;
 }
 
 @theme {
     /*--animate-fadeUp: fadeUp 0.18s ease-out;*/
-    --font-sans: "IRANSansFaNum";
+    --font-sans: "IRANSans";
 }
 
 @keyframes fadeUp {

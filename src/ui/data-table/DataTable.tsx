@@ -9,6 +9,12 @@ export function DataTable<T>({
                                  onRowClick,
                              }: DataTableProps<T>) {
 
+    const alignClass = {
+        left: "text-left",
+        center: "text-center",
+        right: "text-right",
+    };
+
     function TableSkeleton({
                                rows = 10,
                                columns = 6,
@@ -20,9 +26,9 @@ export function DataTable<T>({
             <div className="overflow-hidden rounded-2xl border bg-white">
                 <table className="w-full">
                     <tbody>
-                    {Array.from({ length: rows }).map((_, row) => (
+                    {Array.from({length: rows}).map((_, row) => (
                         <tr key={row}>
-                            {Array.from({ length: columns }).map((_, col) => (
+                            {Array.from({length: columns}).map((_, col) => (
                                 <td
                                     key={col}
                                     className="px-4 py-4"
@@ -57,24 +63,39 @@ export function DataTable<T>({
     return (
         <div className="overflow-hidden rounded-lg bg-white">
             <div className="h-[80vh] overflow-auto" dir={'ltr'}>
-                <table className="min-w-full" dir={'rtl'}>
+                <table className="
+                            table-fixed
+                            w-full
+                            border-collapse
+                        " dir={'rtl'}>
+                    <colgroup>
+                        {columns.map((column) => (
+                            <col
+                                key={String(column.key)}
+                                style={{
+                                    width: column.width
+                                        ? `${column.width}px`
+                                        : undefined,
+                                }}
+                            />
+                        ))}
+                    </colgroup>
                     <thead>
                     <tr>
                         {columns.map((column) => (
                             <th
                                 key={String(column.key)}
-                                className="
-                                        sticky
-                                        top-0
-                                        z-10
-                                        bg-gray-50
-                                        px-4
-                                        py-4
-                                        text-right
-                                        text-sm
-                                        font-extrabold
-                                        text-gray-700
-                                    "
+                                className={`
+                                    sticky
+                                    top-0
+                                    z-10
+                                    bg-gray-50
+                                    px-4
+                                    py-4
+                                    font-semibold
+                                    text-gray-700
+                                    ${alignClass[column.align ?? "right"]}
+                                `}
                             >
                                 {column.title}
                             </th>
@@ -83,7 +104,6 @@ export function DataTable<T>({
                     </thead>
 
                     <tbody>
-
                     {data.length === 0 && (
                         <tr>
                             <td
@@ -109,17 +129,29 @@ export function DataTable<T>({
                                 "
                         >
 
-                                {columns.map((column) => {
+                            {columns.map((column) => {
 
-                                    const value =
-                                        row[
-                                            column.key as keyof T
-                                            ];
+                                const value =
+                                    row[
+                                        column.key as keyof T
+                                        ];
 
-                                    return (
-                                        <td
-                                            key={String(column.key)}
-                                            className="px-4 py-4"
+                                return (
+                                    <td
+                                        key={String(column.key)}
+                                        className={`
+                                        px-4
+                                        py-4
+                                        ${alignClass[column.align ?? "right"]}
+                                    `}
+                                    >
+                                        <div
+                                            className="
+                                                overflow-hidden
+                                                text-ellipsis
+                                                whitespace-nowrap
+                                            "
+                                            title={String(value ?? "")}
                                         >
                                             {column.render
                                                 ? column.render(
@@ -127,11 +159,11 @@ export function DataTable<T>({
                                                     row,
                                                     rowIndex
                                                 )
-                                                : String(value ?? "")
-                                            }
-                                        </td>
-                                    );
-                                })}
+                                                : String(value ?? "")}
+                                        </div>
+                                    </td>
+                                );
+                            })}
 
                         </tr>
                     ))}
