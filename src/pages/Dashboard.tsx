@@ -1,176 +1,69 @@
 import Plus from '@/icons/Plus.svg?react';
-import Modal from '@/ui/Modal/Modal.tsx'
-import { useState } from "react";
-// import Portal from "@/ui/Portal/Portal.tsx";
 import {DataTable} from "@/ui/data-table/DataTable.tsx";
+import {transactions} from "@/ui/data-table/data/transactions.ts";
+import {columns} from "@/ui/data-table/features/transactions/columns.tsx";
 
 export default function Dashboard() {
 
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
 
-    type Props = {
-        value: number;
-    };
-
-    function MoneyValue({
-                                           value,
-                                       }: Props) {
-
-        if (value > 0) {
-            return (
-                <span dir={'ltr'} className="
-                        inline-block
-                        min-w-[80px]
-                        text-center
-                        font-medium
-                        text-green-600
-                    ">
-                +{value.toLocaleString()}
-            </span>
-            );
-        }
-
-        if (value < 0) {
-            return (
-                <span dir={'ltr'} className="text-red-600">
-                {value.toLocaleString()}
-            </span>
-            );
-        }
-
-        return (
-            <span dir={'ltr'} className="text-gray-900">
-
-        </span>
-        );
-    }
-
-
-    type Transaction = {
-        id: number;
-        customer: string;
-        toman: number;
-        dollar: number;
-        dinar: number;
-        date: string;
-        description: string;
-    };
-
-    const transactions: Transaction[] = [
-        {id: 1, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 2, customer: 'ناظم عبدالامیر محمد هاشم', toman: -200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 3, customer: 'ناظم عبدالامیر محمد هاشم', toman: 0, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 4, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 5, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 6, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 7, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 8, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 9, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 10, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 11, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 12, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 13, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 14, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 15, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 16, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 17, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 18, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 19, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 20, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-        {id: 21, customer: 'ناظم عبدالامیر محمد هاشم', toman: 200000, dollar: 100,dinar: 110000, date: '04/11/24', description:'علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم علی پسر حاج ناظم '},
-    ];
-
-    const columns: Column<Transaction>[] = [
-        {
-            key: "customer",
-            title: "نام مشتری",
-            width: 180,
-        },
-
-        {
-            key: "toman",
-            title: "تومان",
-            width: 120,
-            align: "center",
-
-            render: (value) => (
-                <MoneyValue
-                    value={Number(value)}
-                />
-            ),
-        },
-
-        {
-            key: "dollar",
-            title: "دلار",
-            width: 120,
-            align: "center",
-
-            render: (value) => (
-                <MoneyValue
-                    value={Number(value)}
-                />
-            ),
-        },
-
-        {
-            key: "dinar",
-            title: "دینار",
-            width: 120,
-            align: "center",
-
-            render: (value) => (
-                <MoneyValue
-                    value={Number(value)}
-                />
-            ),
-        },
-
-        {
-            key: "date",
-            title: "تاریخ",
-            width: 140,
-            align: "center",
-        },
-
-        {
-            key: "description",
-            title: "توضیحات",
-            width: 300,
-        },
-    ];
-
-    return <div className={''} dir={'rtl'}>
-        <div className="flex hidden">
-            <div className={'flex bg-green-400 text-white rounded-lg px-9 py-4 hover:bg-green-500 cursor-pointer transition duration-200 select-none'}>
-                <button className={'cursor-pointer'}>افزودن مشتری</button>
-                <Plus className={'mr-4'}/>
-            </div>
-            <div className={'flex mr-8 bg-purple-400 text-white rounded-lg px-9 py-4 hover:bg-purple-500 cursor-pointer transition duration-200 select-none'}>
-                <button className={'cursor-pointer'}>افزودن حساب</button>
-                <Plus className={'mr-4'}/>
-            </div>
-        </div>
-        <div>
-            <button onClick={() => setOpen(true)} className={'hidden rounded bg-blue-500 px-4 py-2 text-white'}>Open Modal</button>
-            <Modal open={open} onClose={() => setOpen(false)} title={'Hello Globe'}>
-                <p className="text-sm text-gray-600">
-                    This is your first UI Kit modal 🚀
-                </p>
-
-                <div className="mt-4 flex justify-end gap-2">
-                    <button
-                        className="rounded px-3 py-1 text-gray-600"
-                        onClick={() => setOpen(false)}
-                    >
-                        Cancel
-                    </button>
-
-                    <button className="rounded bg-blue-500 px-3 py-1 text-white">
-                        Confirm
-                    </button>
+    return (
+        <div dir={'rtl'}>
+            <div className="flex">
+                <div
+                    className={'flex bg-green-400 text-white rounded-lg px-9 py-4 hover:bg-green-500 cursor-pointer transition duration-200 select-none'}>
+                    <button className={'cursor-pointer'}>افزودن مشتری</button>
+                    <Plus className={'mr-4'}/>
                 </div>
-            </Modal>
+                <div
+                    className={'flex mr-8 bg-purple-400 text-white rounded-lg px-9 py-4 hover:bg-purple-500 cursor-pointer transition duration-200 select-none'}>
+                    <button className={'cursor-pointer'}>افزودن حساب</button>
+                    <Plus className={'mr-4'}/>
+                </div>
+            </div>
+            <div className={'flex justify-between items-center my-8'}>
+                <div>
+                    <div className={'bg-gray-50 text-gray-400 rounded-t-lg py-2 px-8 text-xs'}>قیمت روز ارزها</div>
+                    <div className={'flex justify-between items-center bg-white rounded-b-lg px-8 py-9'}>
+                        <div>
+                            <div className={'font-bold px-12'}>17850</div>
+                            <div className={'text-gray-500 text-xs'}>دلار</div>
+                        </div>
+                        <div className={'font-bold pr-8'}>-</div>
+                        <div className={'pr-8'}>
+                            <div className={'font-bold px-12'}>10800</div>
+                            <div className={'text-gray-500 text-xs'}>دینار</div>
+                        </div>
+                        <div className={'font-bold pr-8'}>-</div>
+                        <div className={'pr-8'}>
+                            <div className={'font-bold px-12'}>202000</div>
+                            <div className={'text-gray-500 text-xs'}>یورو</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    تاریخ شمسی - میلادی
+                </div>
+                <div>
+                    <div className={'bg-gray-50 text-gray-400 rounded-t-lg py-2 px-8 text-xs'}>طلب و بدهی ها</div>
+                    <div className={'flex justify-between items-center bg-white rounded-b-lg px-8 py-9'}>
+                        <div>
+                            <div className={'font-bold px-12'}>0</div>
+                            <div className={'text-gray-500 text-xs'}>تومان</div>
+                        </div>
+                        <div className={'font-bold pr-8'}>-</div>
+                        <div className={'pr-8'}>
+                            <div className={'text-green-500 font-bold px-12'}>1200</div>
+                            <div className={'text-gray-500 text-xs'}>دلار</div>
+                        </div>
+                        <div className={'font-bold pr-8'}>-</div>
+                        <div className={'pr-8'}>
+                            <div className={'text-red-500 font-bold px-12'}>2000</div>
+                            <div className={'text-gray-500 text-xs'}>دینار</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div>
                 <DataTable
                     rowKey="id"
@@ -179,9 +72,9 @@ export default function Dashboard() {
                     loading={false}
                 />
             </div>
-        </div>
-        <div>
+            <div>
 
+            </div>
         </div>
-    </div>;
+    );
 }

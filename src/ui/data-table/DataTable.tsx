@@ -93,6 +93,7 @@ export function DataTable<T>({
                                     px-4
                                     py-4
                                     font-semibold
+                                    text-md
                                     text-gray-700
                                     ${alignClass[column.align ?? "right"]}
                                 `}
@@ -149,6 +150,7 @@ export function DataTable<T>({
                                             className="
                                                 overflow-hidden
                                                 text-ellipsis
+                                                text-sm
                                                 whitespace-nowrap
                                             "
                                             title={String(value ?? "")}
