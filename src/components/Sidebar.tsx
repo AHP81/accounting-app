@@ -4,7 +4,7 @@ import SidebarItem from "@/components/SidebarItem.tsx";
 
 export default function Sidebar() {
     return (
-        <aside className="w-20 h-screen">
+        <aside className="w-20 h-screen bg-white">
             <nav className="flex flex-col h-full justify-between py-6">
                 {
                     sidebarGroups.map((group, index) => (

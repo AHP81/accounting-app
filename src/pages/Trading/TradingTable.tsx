@@ -10,11 +10,11 @@ import { cn } from "@/lib/utils";
 
 export default function TradingTable() {
     return (
-        <div className="w-full rounded-lg overflow-hidden bg-white">
-            <div className="max-h-[70vh] overflow-auto">
+        <div className="h-full w-full rounded-lg overflow-hidden bg-white flex flex-col">
+            {/* بخش اسکرول‌شونده */}
+            <div className="flex-1 overflow-auto">
                 <Table noWrapper dir="rtl" className="w-full border-separate border-spacing-0">
                     <TableHeader className="sticky top-0 z-40">
-                        {/* فاصلهٔ بین <TableRow> و اولین <TableHead> باید صفر باشه */}
                         <TableRow className="bg-gray-50">
                             <TableHead className="text-right text-gray-700 text-base font-bold py-5 px-4 min-w-[200px] bg-gray-50">نام مشتری</TableHead>
                             <TableHead className="text-right text-gray-700 text-base font-bold py-5 px-4 min-w-[100px] bg-gray-50">تومان</TableHead>
