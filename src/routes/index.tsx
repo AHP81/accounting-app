@@ -7,7 +7,7 @@ import {ROUTES} from "@/config/routes.ts";
 import {lazy} from "react";
 const MainLayout = lazy(() => import("@/layouts/MainLayout"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
-const Trading = lazy(() => import("@/pages/Trading"));
+const Trading = lazy(() => import("@/pages/Trading/Trading.tsx"));
 const Revenue = lazy(() => import("@/pages/Revenue"));
 const CreditCard = lazy(() => import("@/pages/CreditCard"));
 const Group = lazy(() => import("@/pages/Group"));

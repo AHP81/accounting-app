@@ -1,7 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
-// افزودن propهای noWrapper و divClassName
 function Table({
                  className,
                  noWrapper,
@@ -11,7 +10,6 @@ function Table({
   noWrapper?: boolean
   divClassName?: string
 }) {
-  // اگه noWrapper فعال باشه، wrapper رندر نمیشه
   if (noWrapper) {
     return (
         <table
@@ -22,7 +20,6 @@ function Table({
     )
   }
 
-  // حالت پیش‌فرض با wrapper (برای جاهایی که خود جدول اسکرول افقی نیاز داره)
   return (
       <div
           data-slot="table-container"
