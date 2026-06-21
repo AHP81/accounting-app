@@ -7,21 +7,15 @@ import {
     TableCell,
 } from "@/components/ui/table";
 
+import { cn } from "@/lib/utils"
+
 export default function Trading() {
     return (
-        // wrapper بیرونی فقط گردی و برش، بدون اسکرول
-        <div className="w-full rounded-lg overflow-hidden bg-white shadow-sm">
-
-            {/* اسکرول کانتینر LTR (بدون dir) – اسکرولبار سمت راست */}
+        <div className="w-full rounded-lg overflow-hidden bg-white">
             <div className="max-h-[70vh] overflow-auto">
-
-                {/* جدول با dir="rtl" برای چینش راست‌به‌چپ محتوا */}
-                <Table dir="rtl" className="w-full border-separate border-spacing-0">
-
-                    {/* HEADER: sticky + پس‌زمینه + z-index */}
+                <Table noWrapper dir="rtl" className="w-full border-separate border-spacing-0">
                     <TableHeader className="sticky top-0 z-40">
                         <TableRow className="bg-gray-50">  {/* بدون border-b */}
-
                             <TableHead className="text-right text-gray-700 text-base font-bold py-5 px-4 min-w-[200px] bg-gray-50">
                                 نام مشتری
                             </TableHead>
@@ -43,42 +37,41 @@ export default function Trading() {
 
                         </TableRow>
                     </TableHeader>
-
-                    {/* BODY */}
                     <TableBody>
-                        {Array(50).fill(1).map((_, index) => (
-                            <TableRow
-                                key={index}
-                                // فاصله عمودی بیشتر + خط پررنگ‌تر و رنگ gray-800
-                                className="border-b-2 border-gray-800 bg-white"
-                            >
-                                <TableCell className="px-4 py-4 min-w-[200px]">
-                                    ناظم عبدالامیر محمد هاشم
-                                </TableCell>
-                                <TableCell className="px-4 py-4 min-w-[100px] text-green-400">
-                                    <span dir="ltr">+100</span>
-                                </TableCell>
-                                <TableCell className="px-4 py-4 min-w-[100px] text-red-400">
-                                    <span dir="ltr">-100</span>
-                                </TableCell>
-                                <TableCell className="px-4 py-4 min-w-[100px] text-gray-700">
-                                    <span dir="ltr">0</span>
-                                </TableCell>
-                                <TableCell className="px-4 py-4 min-w-[100px] text-center">
-                                    04/11/24
-                                </TableCell>
-                                <TableCell className="pr-12 py-4 max-w-[300px]">
-                                    <div
-                                        className="truncate"
-                                        title="علی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظم"
-                                    >
-                                        علی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظم
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                        {Array(50).fill(1).map((_, index, arr) => {
+                            const isLast = index === arr.length - 1;
+                            return (
+                                <TableRow
+                                    key={index}
+                                    className={cn(
+                                        "bg-white border-b-0",
+                                        isLast && "[&>td]:border-b-0"
+                                    )}
+                                >
+                                    <TableCell className="px-4 py-4 min-w-[200px] border-b-2 border-gray-200">
+                                        ناظم عبدالامیر محمد هاشم
+                                    </TableCell>
+                                    <TableCell className="px-4 py-4 min-w-[100px] text-green-400 border-b-2 border-gray-200">
+                                        <span dir="ltr">+100</span>
+                                    </TableCell>
+                                    <TableCell className="px-4 py-4 min-w-[100px] text-red-400 border-b-2 border-gray-200">
+                                        <span dir="ltr">-100</span>
+                                    </TableCell>
+                                    <TableCell className="px-4 py-4 min-w-[100px] text-gray-700 border-b-2 border-gray-200">
+                                        <span dir="ltr">0</span>
+                                    </TableCell>
+                                    <TableCell className="px-4 py-4 min-w-[100px] text-center border-b-2 border-gray-200">
+                                        04/11/24
+                                    </TableCell>
+                                    <TableCell className="pr-12 py-4 max-w-[300px] border-b-2 border-gray-200">
+                                        <div className="truncate" title="علی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظم">
+                                            علی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظمعلی پسر حاج ناظم
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
-
                 </Table>
             </div>
         </div>

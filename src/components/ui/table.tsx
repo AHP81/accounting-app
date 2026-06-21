@@ -1,22 +1,41 @@
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+// افزودن propهای noWrapper و divClassName
+function Table({
+                 className,
+                 noWrapper,
+                 divClassName,
+                 ...props
+               }: React.ComponentProps<"table"> & {
+  noWrapper?: boolean
+  divClassName?: string
+}) {
+  // اگه noWrapper فعال باشه، wrapper رندر نمیشه
+  if (noWrapper) {
+    return (
+        <table
+            data-slot="table"
+            className={cn("w-full caption-bottom text-sm", className)}
+            {...props}
+        />
+    )
+  }
+
+  // حالت پیش‌فرض با wrapper (برای جاهایی که خود جدول اسکرول افقی نیاز داره)
   return (
-    <div
-      data-slot="table-container"
-      className="relative w-full overflow-x-auto"
-    >
-      <table
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
-    </div>
+      <div
+          data-slot="table-container"
+          className={cn("relative w-full overflow-x-auto", divClassName)}
+      >
+        <table
+            data-slot="table"
+            className={cn("w-full caption-bottom text-sm", className)}
+            {...props}
+        />
+      </div>
   )
 }
-
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
